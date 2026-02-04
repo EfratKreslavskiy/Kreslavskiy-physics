@@ -1,4 +1,6 @@
-public class Force
+package Kreslavskiy.physics;
+public class
+Force
 {
     private double x;
     private double y;
@@ -10,10 +12,12 @@ public class Force
         x = x1;
         y = y1;
     }
+
     public double getX()
     {
         return x;
     }
+
     public double getY()
     {
         return y;
@@ -22,7 +26,7 @@ public class Force
 
     public double getMagnitude()
     {
-        double mag = x*x + y*y;
+        double mag = x * x + y * y;
         mag = Math.sqrt(mag);
         magnitude = mag;
         return mag;
@@ -37,7 +41,7 @@ public class Force
 
     public Force addForce(Force f2)
     {
-        return new Force(this.getX()+f2.getX(), f2.getY()+this.getY());
+        return new Force(this.getX() + f2.getX(), f2.getY() + this.getY());
     }
 
     /**
@@ -46,8 +50,8 @@ public class Force
     public Force normalize()
     {
         double mag = getMagnitude();
-        double x1 = getX()/mag;
-        double y1 = getY()/mag;
+        double x1 = getX() / mag;
+        double y1 = getY() / mag;
         return new Force(x1, y1);
     }
 
@@ -56,21 +60,8 @@ public class Force
      */
     public Force scale(double scale)
     {
-        Force newF = new Force(this.x*scale, this.y*scale);
+        Force newF = new Force(this.x * scale, this.y * scale);
         return newF;
     }
-
-    /*
-    public static void main(String[] args)
-    {
-        Force F1 = new Force(7, 3);
-        Force F2 = new Force(-4, 12);
-        Force F3 = F1.addForce(F2);
-
-        System.out.println("F1: (" + F1.getX() + "," + F1.getY() + ") \tDegrees: " + F1.getDegrees() + "\tMagnitude: " + F1.getMagnitude());
-        System.out.println("F2: (" + F2.getX() + "," + F2.getY() + ") Degrees: " + F2.getDegrees() + "\tMagnitude: " + F2.getMagnitude());
-        System.out.println("F3: (" + F3.getX() + "," + F3.getY() + ") \tDegrees: " + F3.getDegrees() + "\tMagnitude: " + F3.getMagnitude());
-    }
-    */
 }
 

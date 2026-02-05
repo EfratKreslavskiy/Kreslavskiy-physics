@@ -1,4 +1,5 @@
 package kreslavskiy.physics;
+
 public class Force
 {
     private double x;

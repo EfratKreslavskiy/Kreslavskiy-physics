@@ -1,16 +1,15 @@
-package Kreslavskiy.physics;
-public class
-Force
+package kreslavskiy.physics;
+public class Force
 {
     private double x;
     private double y;
     private double magnitude;
     private double degrees;
 
-    public Force(double x1, double y1)
+    public Force(double x, double y)
     {
-        x = x1;
-        y = y1;
+        this.x = x;
+        this.y = y;
     }
 
     public double getX()
@@ -22,7 +21,6 @@ Force
     {
         return y;
     }
-
 
     public double getMagnitude()
     {

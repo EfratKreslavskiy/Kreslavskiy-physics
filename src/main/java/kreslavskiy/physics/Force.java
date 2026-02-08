@@ -25,14 +25,13 @@ public class Force
     {
         double mag = x * x + y * y;
         mag = Math.sqrt(mag);
-        magnitude = mag;
         return mag;
     }
 
     public double getDegrees()
     {
         double radians = Math.atan2(y, x);
-        degrees = Math.toDegrees(radians);
+        double degrees = Math.toDegrees(radians);
         return degrees;
     }
 

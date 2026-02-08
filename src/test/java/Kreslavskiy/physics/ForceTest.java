@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ForceTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getMagnitude()
     {
         //given
@@ -18,7 +18,7 @@ class ForceTest {
         assertEquals(5, mag, 0.01);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getDegrees() {
         //given
         Force f = new Force(3, 4);
@@ -30,7 +30,7 @@ class ForceTest {
         assertEquals(53.13, degrees, 0.1);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void addForce() {
         //given
         Force f = new Force(3, 4);

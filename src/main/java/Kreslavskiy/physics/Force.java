@@ -4,8 +4,6 @@ public class Force
 {
     private double x;
     private double y;
-    private double magnitude;
-    private double degrees;
 
     public Force(double x, double y)
     {

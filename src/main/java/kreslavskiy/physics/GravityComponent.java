@@ -21,14 +21,14 @@ public class GravityComponent extends JComponent
         double y = 0.0;
         Force f1 = new Force(37.0365, 28.9360);
 
-        for(double i=0; i<5; i+= 0.001)
+        for (double i = 0; i < 5; i += 0.001)
         {
             f1 = f1.addForce(scaledGravity);
             Force scaledF1 = f1.scale(0.001);
 
             x += scaledF1.getX();
             y += scaledF1.getY();
-            g.fillOval((int)(x), (int)(getHeight()-y), 20, 20);
+            g.fillOval((int) (x), (int) (getHeight() - y), 20, 20);
 
         }
     }

@@ -59,5 +59,6 @@ public class Force
         Force newF = new Force(this.x * scale, this.y * scale);
         return newF;
     }
+
 }
 

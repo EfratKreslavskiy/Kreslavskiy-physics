@@ -86,7 +86,7 @@ class ForceTest
 
         //when
         //add gravity to ur force after 1s, creating new force. what is xy value? add to new force
-        for(double i=0; i<5; i+= 0.001)
+        for (double i = 0; i < 5; i += 0.001)
         {
             f1 = f1.addForce(scaledGravity);
             Force scaledF1 = f1.scale(0.001);

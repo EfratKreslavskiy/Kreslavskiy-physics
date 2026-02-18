@@ -3,7 +3,8 @@ package kreslavskiy.physics;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ForceTest {
+class ForceTest
+{
 
     @Test
     void getMagnitude()
@@ -71,4 +72,30 @@ class ForceTest {
         assertEquals(6, scaled.getX(), 0.1);
         assertEquals(8, scaled.getY(), 0.1);
     }
+
+    @Test
+    void gravity()
+    {
+        //given
+        Force gravity = new Force(0, -9.8);
+        Force scaledGravity = gravity.scale(0.001);
+
+        double x = 0.0;
+        double y = 0.0;
+        Force f1 = new Force(37.0365, 28.9360);
+
+        //when
+        //add gravity to ur force after 1s, creating new force. what is xy value? add to new force
+        for (double i = 0; i < 5; i += 0.001)
+        {
+            f1 = f1.addForce(scaledGravity);
+            Force scaledF1 = f1.scale(0.001);
+
+            x += scaledF1.getX();
+            y += scaledF1.getY();
+
+        }
+        System.out.println("Final location after 5s: " + x + ", " + y);
+    }
+
 }

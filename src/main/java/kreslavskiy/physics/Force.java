@@ -1,61 +1,37 @@
 package kreslavskiy.physics;
 
-public class Force
-{
-    private double x;
-    private double y;
+public record Force(double x, double y) {
 
-    public Force(double x, double y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-
-    public double getX()
-    {
-        return x;
-    }
-
-    public double getY()
-    {
-        return y;
-    }
-
-    public double getMagnitude()
-    {
+    public double getMagnitude() {
         double mag = x * x + y * y;
         mag = Math.sqrt(mag);
         return mag;
     }
 
-    public double getDegrees()
-    {
+    public double getDegrees() {
         double radians = Math.atan2(y, x);
         double degrees = Math.toDegrees(radians);
         return degrees;
     }
 
-    public Force addForce(Force f2)
-    {
-        return new Force(this.getX() + f2.getX(), f2.getY() + this.getY());
+    public Force addForce(Force f2) {
+        return new Force(this.x + f2.x(), this.y + f2.y());
     }
 
     /**
      * @return a new force where the magnitude is 1 (divide x and y by magnitude)
      */
-    public Force normalize()
-    {
+    public Force normalize() {
         double mag = getMagnitude();
-        double x1 = getX() / mag;
-        double y1 = getY() / mag;
+        double x1 = x / mag;
+        double y1 = y / mag;
         return new Force(x1, y1);
     }
 
     /**
      * @return a new force with x and y multiplied by scale
      */
-    public Force scale(double scale)
-    {
+    public Force scale(double scale) {
         Force newF = new Force(this.x * scale, this.y * scale);
         return newF;
     }

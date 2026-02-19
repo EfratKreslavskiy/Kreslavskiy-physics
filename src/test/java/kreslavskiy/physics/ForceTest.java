@@ -1,14 +1,13 @@
 package kreslavskiy.physics;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-class ForceTest
-{
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class ForceTest {
 
     @Test
-    void getMagnitude()
-    {
+    void getMagnitude() {
         //given
         Force f = new Force(3, 4);
 
@@ -41,13 +40,12 @@ class ForceTest
         Force f3 = f.addForce(f2);
 
         //then
-        assertEquals(1, f3.getX(), 0.1);
-        assertEquals(7, f3.getY(), 0.1);
+        assertEquals(1, f3.x(), 0.1);
+        assertEquals(7, f3.y(), 0.1);
     }
 
     @Test
-    void normalize()
-    {
+    void normalize() {
         //given
         Force f = new Force(3, 4);
 
@@ -60,8 +58,7 @@ class ForceTest
     }
 
     @Test
-    void scale()
-    {
+    void scale() {
         //given
         Force f = new Force(3, 4);
 
@@ -69,13 +66,12 @@ class ForceTest
         Force scaled = f.scale(2.0);
 
         //then
-        assertEquals(6, scaled.getX(), 0.1);
-        assertEquals(8, scaled.getY(), 0.1);
+        assertEquals(6, scaled.x(), 0.1);
+        assertEquals(8, scaled.y(), 0.1);
     }
 
     @Test
-    void gravity()
-    {
+    void gravity() {
         //given
         Force gravity = new Force(0, -9.8);
         Force scaledGravity = gravity.scale(0.001);
@@ -86,13 +82,12 @@ class ForceTest
 
         //when
         //add gravity to ur force after 1s, creating new force. what is xy value? add to new force
-        for (double i = 0; i < 5; i += 0.001)
-        {
+        for (double i = 0; i < 5; i += 0.001) {
             f1 = f1.addForce(scaledGravity);
             Force scaledF1 = f1.scale(0.001);
 
-            x += scaledF1.getX();
-            y += scaledF1.getY();
+            x += scaledF1.x();
+            y += scaledF1.y();
 
         }
         System.out.println("Final location after 5s: " + x + ", " + y);

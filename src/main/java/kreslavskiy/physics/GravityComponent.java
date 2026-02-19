@@ -11,6 +11,10 @@ public class GravityComponent extends JComponent {
         repaint();
     }
 
+    public Force getForce() {
+        return force;
+    }
+
 
     @Override
     protected void paintComponent(Graphics g) {

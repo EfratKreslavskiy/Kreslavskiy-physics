@@ -15,7 +15,7 @@ public record Force(double x, double y) {
     }
 
     public Force addForce(Force f2) {
-        return new Force(this.x() + f2.x(), this.y() + f2.y());
+        return new Force(this.x + f2.x(), this.y + f2.y());
     }
 
     /**
@@ -23,8 +23,8 @@ public record Force(double x, double y) {
      */
     public Force normalize() {
         double mag = getMagnitude();
-        double x1 = x() / mag;
-        double y1 = y() / mag;
+        double x1 = x / mag;
+        double y1 = y / mag;
         return new Force(x1, y1);
     }
 

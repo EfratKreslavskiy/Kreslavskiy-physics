@@ -29,6 +29,7 @@ public class Projectile {
 
         x += scaledForce.x();
         y += scaledForce.y();
+
     }
 
 }

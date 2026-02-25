@@ -5,31 +5,34 @@ import java.awt.*;
 
 public class GravityComponent extends JComponent
 {
+    private Force force = new Force(37.0365, 28.9360);
+
+    public void setForce(Force force)
+    {
+        this.force = force;
+        repaint();
+    }
+
+    public Force getForce()
+    {
+        return force;
+    }
+
+
     @Override
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
 
-        //g.drawLine(0, 0, getWidth(), getHeight());
-        //g.drawOval(30, 45, 20, 20);                    //draws outline of oval
-        //g.fillOval(0, 0, 20, 20); //draws filled oval
 
-        Force gravity = new Force(0, -9.8);
-        Force scaledGravity = gravity.scale(0.001);
+        g.translate(0, getHeight());                  //move origin to bottom left corner
 
-        double x = 0.0;
-        double y = 0.0;
-        Force f1 = new Force(37.0365, 28.9360);
+        Projectile p = new Projectile(0, 0, force);
 
         for (double i = 0; i < 5; i += 0.001)
         {
-            f1 = f1.addForce(scaledGravity);
-            Force scaledF1 = f1.scale(0.001);
-
-            x += scaledF1.getX();
-            y += scaledF1.getY();
-            g.fillOval((int) (x), (int) (getHeight() - y), 20, 20);
-
+            p.apply(0.001);
+            g.fillOval((int) (p.getX()), (int) (-p.getY()), 5, 5);
         }
     }
 }

@@ -22,6 +22,12 @@ public class GravityFrame extends JFrame
 
         GravityComponent gravityComponent = new GravityComponent();
 
+        JPanel northPanel = new JPanel();
+        JLabel angleLabel = new JLabel("Angle:");
+        JLabel magLabel = new JLabel("Magnitude:");
+        JTextField angleField = new JTextField();
+        JTextField magField = new JTextField();
+
         button.addActionListener(new ActionListener()
         {
             @Override
@@ -33,22 +39,12 @@ public class GravityFrame extends JFrame
                                 Double.parseDouble(yField.getText())
                         ));
 
-
-                JPanel eastPanel = new JPanel();
-
-                JLabel angleLabel = new JLabel("Angle:");                              //create label
-                eastPanel.add(angleLabel);                                                  //add it to panel
-                String mag = String.valueOf(gravityComponent.getForce().getMagnitude());    //get mag as String
-                JTextField angleField = new JTextField(mag);                                //create text field
-                eastPanel.add(angleField);                                                  //add it to panel
-
-                JLabel magLabel = new JLabel("Magnitude:");
-                eastPanel.add(magLabel);
+                String mag = String.valueOf(gravityComponent.getForce().getMagnitude());
                 String ang = String.valueOf(gravityComponent.getForce().getDegrees());
-                JTextField magField = new JTextField(ang);
-                eastPanel.add(magField);
 
-                add(eastPanel, BorderLayout.EAST);
+                magField.setText(mag);
+                angleField.setText(ang);
+
                 gravityComponent.repaint();
 
             }
@@ -60,7 +56,7 @@ public class GravityFrame extends JFrame
         JLabel yForce = new JLabel("ForceY:");
         JLabel timeLabel = new JLabel("Time:");
 
-        JPanel northPanel = new JPanel();               //only 1 per direction, so need panel that will hold many things
+
         northPanel.add(xForce);
         northPanel.add(xField);
         northPanel.add(yForce);
@@ -68,6 +64,10 @@ public class GravityFrame extends JFrame
         northPanel.add(timeLabel);
         northPanel.add(time);
         northPanel.add(button);
+        northPanel.add(magLabel);
+        northPanel.add(magField);
+        northPanel.add(angleLabel);
+        northPanel.add(angleField);
 
         add(northPanel, BorderLayout.NORTH);
 

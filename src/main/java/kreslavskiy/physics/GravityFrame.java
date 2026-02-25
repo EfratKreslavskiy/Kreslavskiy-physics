@@ -23,8 +23,6 @@ public class GravityFrame extends JFrame
         GravityComponent gravityComponent = new GravityComponent();
 
         JPanel northPanel = new JPanel();
-        JLabel angleLabel = new JLabel("Angle:");
-        JLabel magLabel = new JLabel("Magnitude:");
         JTextField angleField = new JTextField();
         JTextField magField = new JTextField();
 
@@ -55,7 +53,8 @@ public class GravityFrame extends JFrame
         JLabel xForce = new JLabel("ForceX:");
         JLabel yForce = new JLabel("ForceY:");
         JLabel timeLabel = new JLabel("Time:");
-
+        JLabel angleLabel = new JLabel("Angle:");
+        JLabel magLabel = new JLabel("Magnitude:");
 
         northPanel.add(xForce);
         northPanel.add(xField);

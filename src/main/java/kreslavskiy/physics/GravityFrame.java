@@ -2,8 +2,7 @@ package kreslavskiy.physics;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GravityFrame extends JFrame
 {
@@ -20,28 +19,85 @@ public class GravityFrame extends JFrame
 
         JButton button = new JButton("Draw");
 
+        JPanel northPanel = new JPanel();
+        JLabel angLabel = new JLabel();
+        JLabel magLabel = new JLabel();
+
+
         GravityComponent gravityComponent = new GravityComponent();
 
-        JPanel northPanel = new JPanel();
-        JTextField angleField = new JTextField();
-        JTextField magField = new JTextField();
+        gravityComponent.addMouseListener(new MouseListener()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                Force force = new Force(e.getX(), gravityComponent.getHeight() - e.getY());
+                gravityComponent.setForce(force);
 
+
+                magLabel.setText("Magnitude: " + force.getMagnitude());
+                angLabel.setText("Angle: " + force.getDegrees());
+
+                gravityComponent.repaint();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e)
+            {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e)
+            {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e)
+            {
+
+            }
+        });
+
+        gravityComponent.addMouseMotionListener(new MouseMotionListener()
+        {
+            @Override
+            public void mouseDragged(MouseEvent e)
+            {
+                Force force = new Force(e.getX(), gravityComponent.getHeight() - e.getY());
+                gravityComponent.setForce(force);
+                xField.setText(String.valueOf(force.getX()));
+                yField.setText(String.valueOf(force.getY()));
+                magLabel.setText("Magnitude: " + force.getMagnitude());
+                angLabel.setText("Angle: " + force.getDegrees());
+
+                gravityComponent.repaint();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e)
+            {
+
+            }
+        });
         button.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                gravityComponent.setForce(
-                        new Force(
-                                Double.parseDouble(xField.getText()),
-                                Double.parseDouble(yField.getText())
-                        ));
-
-                String mag = String.valueOf(gravityComponent.getForce().getMagnitude());
-                String ang = String.valueOf(gravityComponent.getForce().getDegrees());
-
-                magField.setText(mag);
-                angleField.setText(ang);
+                Force force = new Force(Double.parseDouble(xField.getText()), Double.parseDouble(yField.getText()));
+                gravityComponent.setForce(force);
+                xField.setText(String.valueOf(force.getX()));
+                yField.setText(String.valueOf(force.getY()));
+                magLabel.setText("Magnitude: " + force.getMagnitude());
+                angLabel.setText("Angle: " + force.getDegrees());
 
                 gravityComponent.repaint();
 
@@ -53,8 +109,6 @@ public class GravityFrame extends JFrame
         JLabel xForce = new JLabel("ForceX:");
         JLabel yForce = new JLabel("ForceY:");
         JLabel timeLabel = new JLabel("Time:");
-        JLabel angleLabel = new JLabel("Angle:");
-        JLabel magLabel = new JLabel("Magnitude:");
 
         northPanel.add(xForce);
         northPanel.add(xField);
@@ -64,12 +118,9 @@ public class GravityFrame extends JFrame
         northPanel.add(time);
         northPanel.add(button);
         northPanel.add(magLabel);
-        northPanel.add(magField);
-        northPanel.add(angleLabel);
-        northPanel.add(angleField);
+        northPanel.add(angLabel);
 
         add(northPanel, BorderLayout.NORTH);
-
         add(gravityComponent, BorderLayout.CENTER);
     }
 

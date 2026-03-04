@@ -11,7 +11,8 @@ public class GravityController
     private JLabel angLabel;
     private JLabel magLabel;
 
-    public GravityController(GravityComponent gravityComponent, JTextField xField, JTextField yField, JTextField timeField, JLabel angLabel, JLabel magLabel)
+    public GravityController(GravityComponent gravityComponent, JTextField xField, JTextField yField,
+                             JTextField timeField, JLabel angLabel, JLabel magLabel)
     {
         this.gravityComponent = gravityComponent;
         this.xField = xField;

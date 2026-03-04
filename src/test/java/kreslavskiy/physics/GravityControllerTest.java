@@ -19,7 +19,8 @@ class GravityControllerTest
         doReturn("5").when(timeField).getText();
         JLabel angLabel = mock();
         JLabel magLabel = mock();
-        GravityController gravityController = new GravityController(gravityComponent, xField, yField, timeField, angLabel, magLabel);
+        GravityController gravityController = new GravityController(gravityComponent, xField, yField, timeField,
+                angLabel, magLabel);
 
         //when
         gravityController.updateForce(7, 5);

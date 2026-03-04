@@ -14,10 +14,6 @@ public class GravityFrame extends JFrame
 
         setLayout(new BorderLayout());
 
-        JPanel northPanel = new JPanel();
-        JLabel angLabel = new JLabel();
-        JLabel magLabel = new JLabel();
-
         GravityComponent gravityComponent = new GravityComponent();
         GravityController gravityController = new GravityController(gravityComponent);
 
@@ -92,6 +88,9 @@ public class GravityFrame extends JFrame
         JLabel yForce = new JLabel("ForceY:");
         JLabel timeLabel = new JLabel("Time:");
 
+        JPanel northPanel = new JPanel();
+        JLabel angLabel = new JLabel();
+        JLabel magLabel = new JLabel();
         northPanel.add(xForce);
         northPanel.add(xField);
         northPanel.add(yForce);

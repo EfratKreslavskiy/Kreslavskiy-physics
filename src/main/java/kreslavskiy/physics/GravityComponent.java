@@ -6,6 +6,7 @@ import java.awt.*;
 public class GravityComponent extends JComponent
 {
     private Force force = new Force(37.0365, 28.9360);
+    private double time;
 
     public void setForce(Force force)
     {
@@ -18,6 +19,10 @@ public class GravityComponent extends JComponent
         return force;
     }
 
+    public void setTime(double time)
+    {
+        this.time = time;
+    }
 
     @Override
     protected void paintComponent(Graphics g)

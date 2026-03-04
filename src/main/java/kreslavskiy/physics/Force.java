@@ -1,5 +1,7 @@
 package kreslavskiy.physics;
 
+import java.util.Objects;
+
 public class Force
 {
     private final double x;
@@ -26,6 +28,20 @@ public class Force
         double mag = x * x + y * y;
         mag = Math.sqrt(mag);
         return mag;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o == null || getClass() != o.getClass()) return false;
+        Force force = (Force) o;
+        return Double.compare(x, force.x) == 0 && Double.compare(y, force.y) == 0;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(x, y);
     }
 
     public double getDegrees()

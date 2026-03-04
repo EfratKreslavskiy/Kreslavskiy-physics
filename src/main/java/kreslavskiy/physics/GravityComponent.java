@@ -25,17 +25,18 @@ public class GravityComponent extends JComponent
         super.paintComponent(g);
 
         Projectile p = new Projectile(0, 0, force);
-        
+
         g.setColor(Color.BLUE);
-        for (int i = 0; i < getHeight(); i += 20)
+        for (int y = 0; y < getHeight(); y += 20)
         {
-            g.drawLine(0, i, getWidth(), i);
+            g.drawLine(0, y, getWidth(), y);
         }
-        for (int i = 0; i < getWidth(); i += 20)
+        for (int x = 0; x < getWidth(); x += 20)
         {
-            g.drawLine(i, 0, i, getHeight());
+            g.drawLine(x, 0, x, getHeight());
         }
 
+        g.setColor(Color.BLACK);
         g.translate(0, getHeight());                  //move origin to bottom left corner
         for (double i = 0; i < 5; i += 0.001)
         {

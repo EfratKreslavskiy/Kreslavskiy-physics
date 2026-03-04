@@ -14,11 +14,6 @@ public class GravityFrame extends JFrame
 
         setLayout(new BorderLayout());
 
-        JTextField xField = new JTextField("37.0365");
-        JTextField yField = new JTextField("28.9360");
-
-        JButton button = new JButton("Draw");
-
         JPanel northPanel = new JPanel();
         JLabel angLabel = new JLabel();
         JLabel magLabel = new JLabel();
@@ -74,6 +69,11 @@ public class GravityFrame extends JFrame
 
             }
         });
+
+        JButton button = new JButton("Draw");
+        JTextField xField = new JTextField("37.0365");
+        JTextField yField = new JTextField("28.9360");
+
         button.addActionListener(new ActionListener()
         {
             @Override

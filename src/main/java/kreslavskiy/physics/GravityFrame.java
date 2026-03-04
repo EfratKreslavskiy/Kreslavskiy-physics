@@ -23,22 +23,16 @@ public class GravityFrame extends JFrame
         JLabel angLabel = new JLabel();
         JLabel magLabel = new JLabel();
 
-
         GravityComponent gravityComponent = new GravityComponent();
+        GravityController gravityController = new GravityController(gravityComponent);
+
 
         gravityComponent.addMouseListener(new MouseListener()
         {
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                Force force = new Force(e.getX(), gravityComponent.getHeight() - e.getY());
-                gravityComponent.setForce(force);
-
-
-                magLabel.setText("Magnitude: " + force.getMagnitude());
-                angLabel.setText("Angle: " + force.getDegrees());
-
-                gravityComponent.repaint();
+                gravityController.updateForce(e.getX(), gravityComponent.getHeight() - e.getY());
             }
 
             @Override
@@ -71,14 +65,7 @@ public class GravityFrame extends JFrame
             @Override
             public void mouseDragged(MouseEvent e)
             {
-                Force force = new Force(e.getX(), gravityComponent.getHeight() - e.getY());
-                gravityComponent.setForce(force);
-                xField.setText(String.valueOf(force.getX()));
-                yField.setText(String.valueOf(force.getY()));
-                magLabel.setText("Magnitude: " + force.getMagnitude());
-                angLabel.setText("Angle: " + force.getDegrees());
-
-                gravityComponent.repaint();
+                gravityController.updateForce(e.getX(), gravityComponent.getHeight() - e.getY());
             }
 
             @Override
@@ -92,12 +79,7 @@ public class GravityFrame extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                Force force = new Force(Double.parseDouble(xField.getText()), Double.parseDouble(yField.getText()));
-                gravityComponent.setForce(force);
-                xField.setText(String.valueOf(force.getX()));
-                yField.setText(String.valueOf(force.getY()));
-                magLabel.setText("Magnitude: " + force.getMagnitude());
-                angLabel.setText("Angle: " + force.getDegrees());
+                gravityController.updateForce(Double.parseDouble(xField.getText()), Double.parseDouble(yField.getText()));
 
                 gravityComponent.repaint();
 

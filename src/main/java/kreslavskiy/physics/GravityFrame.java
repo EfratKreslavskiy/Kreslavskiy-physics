@@ -75,7 +75,8 @@ public class GravityFrame extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                gravityController.updateForce(Double.parseDouble(xField.getText()), Double.parseDouble(yField.getText()));
+                gravityController.updateForce(Double.parseDouble(xField.getText()),
+                        Double.parseDouble(yField.getText()));
 
                 gravityComponent.repaint();
 

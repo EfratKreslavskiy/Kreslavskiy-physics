@@ -5,11 +5,11 @@ import javax.swing.*;
 public class GravityController
 {
     private final GravityComponent gravityComponent;
-    private JTextField xField;
-    private JTextField yField;
-    private JTextField timeField;
-    private JLabel angLabel;
-    private JLabel magLabel;
+    private final JTextField xField;
+    private final JTextField yField;
+    private final JTextField timeField;
+    private final JLabel angLabel;
+    private final JLabel magLabel;
 
     public GravityController(GravityComponent gravityComponent, JTextField xField, JTextField yField,
                              JTextField timeField, JLabel angLabel, JLabel magLabel)
@@ -22,11 +22,6 @@ public class GravityController
         this.magLabel = magLabel;
     }
 
-    public GravityController(GravityComponent gravityComponent)
-    {
-        this.gravityComponent = gravityComponent;
-    }
-
     public void updateForce(double x, double y)
     {
         Force force = new Force(x, y);
@@ -36,5 +31,6 @@ public class GravityController
         gravityComponent.setTime(Double.parseDouble(timeField.getText()));
         angLabel.setText("Angle: " + force.getDegrees());
         magLabel.setText("Magnitude: " + force.getMagnitude());
+        gravityComponent.repaint();
     }
 }

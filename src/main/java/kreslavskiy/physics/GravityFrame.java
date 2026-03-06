@@ -6,6 +6,12 @@ import java.awt.event.*;
 
 public class GravityFrame extends JFrame
 {
+    private JTextField xField;
+    private JTextField yField;
+    private JTextField timeField;
+    private JLabel angLabel;
+    private JLabel magLabel;
+
     public GravityFrame()
     {
         setSize(300, 400);
@@ -15,8 +21,45 @@ public class GravityFrame extends JFrame
         setLayout(new BorderLayout());
 
         GravityComponent gravityComponent = new GravityComponent();
-        GravityController gravityController = new GravityController(gravityComponent);
 
+        JButton button = new JButton("Draw");
+        JTextField xField = new JTextField("37.0365");
+        JTextField yField = new JTextField("28.9360");
+        JTextField timeField = new JTextField("5");
+
+        JLabel xForce = new JLabel("ForceX:");
+        JLabel yForce = new JLabel("ForceY:");
+        JLabel timeLabel = new JLabel("Time:");
+
+        JPanel northPanel = new JPanel();
+        JLabel angLabel = new JLabel();
+        JLabel magLabel = new JLabel();
+        northPanel.add(xForce);
+        northPanel.add(xField);
+        northPanel.add(yForce);
+        northPanel.add(yField);
+        northPanel.add(timeLabel);
+        northPanel.add(timeField);
+        northPanel.add(button);
+        northPanel.add(magLabel);
+        northPanel.add(angLabel);
+
+        add(northPanel, BorderLayout.NORTH);
+        add(gravityComponent, BorderLayout.CENTER);
+
+        GravityController gravityController = new GravityController(gravityComponent, xField, yField, timeField,
+                angLabel, magLabel);
+
+        button.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                gravityController.updateForce(Double.parseDouble(xField.getText()),
+                        Double.parseDouble(yField.getText()));
+            }
+
+        });
 
         gravityComponent.addMouseListener(new MouseListener()
         {
@@ -51,6 +94,7 @@ public class GravityFrame extends JFrame
             }
         });
 
+
         gravityComponent.addMouseMotionListener(new MouseMotionListener()
         {
             @Override
@@ -65,46 +109,6 @@ public class GravityFrame extends JFrame
 
             }
         });
-
-        JButton button = new JButton("Draw");
-        JTextField xField = new JTextField("37.0365");
-        JTextField yField = new JTextField("28.9360");
-
-        button.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                gravityController.updateForce(Double.parseDouble(xField.getText()),
-                        Double.parseDouble(yField.getText()));
-
-                gravityComponent.repaint();
-
-            }
-
-        });
-
-        JTextField time = new JTextField("5");
-
-        JLabel xForce = new JLabel("ForceX:");
-        JLabel yForce = new JLabel("ForceY:");
-        JLabel timeLabel = new JLabel("Time:");
-
-        JPanel northPanel = new JPanel();
-        JLabel angLabel = new JLabel();
-        JLabel magLabel = new JLabel();
-        northPanel.add(xForce);
-        northPanel.add(xField);
-        northPanel.add(yForce);
-        northPanel.add(yField);
-        northPanel.add(timeLabel);
-        northPanel.add(time);
-        northPanel.add(button);
-        northPanel.add(magLabel);
-        northPanel.add(angLabel);
-
-        add(northPanel, BorderLayout.NORTH);
-        add(gravityComponent, BorderLayout.CENTER);
 
         Runnable runnable = new Runnable()
         {

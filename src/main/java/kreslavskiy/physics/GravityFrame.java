@@ -22,26 +22,26 @@ public class GravityFrame extends JFrame
 
         GravityComponent gravityComponent = new GravityComponent();
 
-        JButton button = new JButton("Draw");
-        JTextField xField = new JTextField("37.0365");
-        JTextField yField = new JTextField("28.9360");
-        JTextField timeField = new JTextField("5");
-
-        JLabel xForce = new JLabel("ForceX:");
-        JLabel yForce = new JLabel("ForceY:");
-        JLabel timeLabel = new JLabel("Time:");
 
         JPanel northPanel = new JPanel();
-        JLabel angLabel = new JLabel();
-        JLabel magLabel = new JLabel();
+
+        JLabel xForce = new JLabel("ForceX:");
         northPanel.add(xForce);
+        JTextField xField = new JTextField("37.0365");
         northPanel.add(xField);
+        JLabel yForce = new JLabel("ForceY:");
         northPanel.add(yForce);
+        JTextField yField = new JTextField("28.9360");
         northPanel.add(yField);
+        JLabel timeLabel = new JLabel("Time:");
         northPanel.add(timeLabel);
+        JTextField timeField = new JTextField("5");
         northPanel.add(timeField);
+        JButton button = new JButton("Draw");
         northPanel.add(button);
+        JLabel magLabel = new JLabel();
         northPanel.add(magLabel);
+        JLabel angLabel = new JLabel();
         northPanel.add(angLabel);
 
         add(northPanel, BorderLayout.NORTH);

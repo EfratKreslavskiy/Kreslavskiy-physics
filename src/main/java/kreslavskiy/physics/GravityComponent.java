@@ -48,9 +48,9 @@ public class GravityComponent extends JComponent
         p.apply(0.01);
         g.fillOval((int) (p.getX()), (int) (-p.getY()), 10, 10);
 
-        double apx_x = force.getX() * force.getY() / 9.8;
-        double apx_y = force.getY() * force.getY() / (-9.8 * 2);
-        g.fillOval((int) apx_x, (int) apx_y, 10, 10);
+        double apxX = force.getX() * force.getY() / 9.8;
+        double apxY = force.getY() * force.getY() / (-9.8 * 2);
+        g.fillOval((int) apxX, (int) apxY, 10, 10);
 
         g.setColor(Color.GREEN);
         g.drawLine(0, 0, (int) force.getX(), (int) -force.getY());

@@ -24,8 +24,8 @@ public class GravityFrame extends JFrame
 
         setLayout(new BorderLayout());
 
-        JPanel northPanel = new JPanel();
         JLabel xForce = new JLabel("ForceX:");
+        JPanel northPanel = new JPanel();
         northPanel.add(xForce);
         JTextField xField = new JTextField("37.0365");
         northPanel.add(xField);
@@ -33,17 +33,17 @@ public class GravityFrame extends JFrame
         northPanel.add(yForce);
         JTextField yField = new JTextField("28.9360");
         northPanel.add(yField);
-        JLabel timeLabel = new JLabel("Time:");
+        timeLabel = new JLabel("Time:");
         northPanel.add(timeLabel);
         JTextField timeField = new JTextField("5");
         northPanel.add(timeField);
         JButton button = new JButton("Draw");
         northPanel.add(button);
-        JLabel magLabel = new JLabel();
+        magLabel = new JLabel();
         northPanel.add(magLabel);
-        JLabel angLabel = new JLabel();
+        angLabel = new JLabel();
         northPanel.add(angLabel);
-        JLabel apexLabel = new JLabel();
+        apexLabel = new JLabel();
         northPanel.add(apexLabel);
 
         add(northPanel, BorderLayout.NORTH);

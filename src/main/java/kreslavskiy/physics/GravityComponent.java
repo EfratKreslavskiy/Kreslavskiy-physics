@@ -13,6 +13,7 @@ public class GravityComponent extends JComponent
     public void setForce(Force force)
     {
         this.force = force;
+        Projectile p = new Projectile(0, 0, force);
         repaint();
     }
 
@@ -31,8 +32,7 @@ public class GravityComponent extends JComponent
     {
         super.paintComponent(g);
 
-
-        g.setColor(Color.BLUE);
+        g.setColor(Color.BLUE);                         //blue graph paper background
         for (int y = 0; y < getHeight(); y += 20)
         {
             g.drawLine(0, y, getWidth(), y);
@@ -44,11 +44,13 @@ public class GravityComponent extends JComponent
 
         g.setColor(Color.BLACK);
         g.translate(0, getHeight());                  //move origin to bottom left corner
-        //for (double i = 0; i < 5; i += 0.001)
-        //{
+
         p.apply(0.01);
         g.fillOval((int) (p.getX()), (int) (-p.getY()), 10, 10);
-        //}
+
+        double apx_x = force.getX() * force.getY() / 9.8;
+        double apx_y = force.getY() * force.getY() / (-9.8 * 2);
+        g.fillOval((int) apx_x, (int) apx_y, 10, 10);
 
         g.setColor(Color.GREEN);
         g.drawLine(0, 0, (int) force.getX(), (int) -force.getY());

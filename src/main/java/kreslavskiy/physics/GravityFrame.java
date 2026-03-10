@@ -11,6 +11,10 @@ public class GravityFrame extends JFrame
     private JTextField timeField;
     private JLabel angLabel;
     private JLabel magLabel;
+    private JLabel timeLabel;
+    private JLabel apexLabel;
+    private double apex;
+
 
     public GravityFrame()
     {
@@ -20,11 +24,7 @@ public class GravityFrame extends JFrame
 
         setLayout(new BorderLayout());
 
-        GravityComponent gravityComponent = new GravityComponent();
-
-
         JPanel northPanel = new JPanel();
-
         JLabel xForce = new JLabel("ForceX:");
         northPanel.add(xForce);
         JTextField xField = new JTextField("37.0365");
@@ -43,12 +43,15 @@ public class GravityFrame extends JFrame
         northPanel.add(magLabel);
         JLabel angLabel = new JLabel();
         northPanel.add(angLabel);
+        JLabel apexLabel = new JLabel();
+        northPanel.add(apexLabel);
 
         add(northPanel, BorderLayout.NORTH);
+        GravityComponent gravityComponent = new GravityComponent();
         add(gravityComponent, BorderLayout.CENTER);
 
         GravityController gravityController = new GravityController(gravityComponent, xField, yField, timeField,
-                angLabel, magLabel);
+                angLabel, magLabel, apexLabel);
 
         button.addActionListener(new ActionListener()
         {
@@ -121,6 +124,7 @@ public class GravityFrame extends JFrame
                     try
                     {
                         Thread.sleep(16);
+
                     } catch (InterruptedException e)
                     {
                         throw new RuntimeException(e);

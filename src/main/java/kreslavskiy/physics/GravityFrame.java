@@ -2,11 +2,20 @@ package kreslavskiy.physics;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GravityFrame extends JFrame
 {
+    private JTextField xField;
+    private JTextField yField;
+    private JTextField timeField;
+    private JLabel angLabel;
+    private JLabel magLabel;
+    private JLabel timeLabel;
+    private JLabel apexLabel;
+    private double apex;
+
+
     public GravityFrame()
     {
         setSize(300, 400);
@@ -15,62 +24,116 @@ public class GravityFrame extends JFrame
 
         setLayout(new BorderLayout());
 
-        JTextField xField = new JTextField("37.0365");
-        JTextField yField = new JTextField("28.9360");
-
-        JButton button = new JButton("Draw");
-
-        GravityComponent gravityComponent = new GravityComponent();
-
+        JLabel xForce = new JLabel("ForceX:");
         JPanel northPanel = new JPanel();
-        JTextField angleField = new JTextField();
-        JTextField magField = new JTextField();
+        northPanel.add(xForce);
+        JTextField xField = new JTextField("37.0365");
+        northPanel.add(xField);
+        JLabel yForce = new JLabel("ForceY:");
+        northPanel.add(yForce);
+        JTextField yField = new JTextField("28.9360");
+        northPanel.add(yField);
+        timeLabel = new JLabel("Time:");
+        northPanel.add(timeLabel);
+        JTextField timeField = new JTextField("5");
+        northPanel.add(timeField);
+        JButton button = new JButton("Draw");
+        northPanel.add(button);
+        magLabel = new JLabel();
+        northPanel.add(magLabel);
+        angLabel = new JLabel();
+        northPanel.add(angLabel);
+        apexLabel = new JLabel();
+        northPanel.add(apexLabel);
+
+        add(northPanel, BorderLayout.NORTH);
+        GravityComponent gravityComponent = new GravityComponent();
+        add(gravityComponent, BorderLayout.CENTER);
+
+        GravityController gravityController = new GravityController(gravityComponent, xField, yField, timeField,
+                angLabel, magLabel, apexLabel);
 
         button.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                gravityComponent.setForce(
-                        new Force(
-                                Double.parseDouble(xField.getText()),
-                                Double.parseDouble(yField.getText())
-                        ));
+                gravityController.updateForce(Double.parseDouble(xField.getText()),
+                        Double.parseDouble(yField.getText()));
+            }
 
-                String mag = String.valueOf(gravityComponent.getForce().getMagnitude());
-                String ang = String.valueOf(gravityComponent.getForce().getDegrees());
+        });
 
-                magField.setText(mag);
-                angleField.setText(ang);
+        gravityComponent.addMouseListener(new MouseListener()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                gravityController.updateForce(e.getX(), gravityComponent.getHeight() - e.getY());
+            }
 
-                gravityComponent.repaint();
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e)
+            {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e)
+            {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e)
+            {
 
             }
         });
 
-        JTextField time = new JTextField("5");
 
-        JLabel xForce = new JLabel("ForceX:");
-        JLabel yForce = new JLabel("ForceY:");
-        JLabel timeLabel = new JLabel("Time:");
-        JLabel angleLabel = new JLabel("Angle:");
-        JLabel magLabel = new JLabel("Magnitude:");
+        gravityComponent.addMouseMotionListener(new MouseMotionListener()
+        {
+            @Override
+            public void mouseDragged(MouseEvent e)
+            {
+                gravityController.updateForce(e.getX(), gravityComponent.getHeight() - e.getY());
+            }
 
-        northPanel.add(xForce);
-        northPanel.add(xField);
-        northPanel.add(yForce);
-        northPanel.add(yField);
-        northPanel.add(timeLabel);
-        northPanel.add(time);
-        northPanel.add(button);
-        northPanel.add(magLabel);
-        northPanel.add(magField);
-        northPanel.add(angleLabel);
-        northPanel.add(angleField);
+            @Override
+            public void mouseMoved(MouseEvent e)
+            {
 
-        add(northPanel, BorderLayout.NORTH);
+            }
+        });
 
-        add(gravityComponent, BorderLayout.CENTER);
+        Runnable runnable = new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                while (true)
+                {
+                    gravityComponent.repaint();
+                    try
+                    {
+                        Thread.sleep(16);
+
+                    } catch (InterruptedException e)
+                    {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     static void main(String[] args)

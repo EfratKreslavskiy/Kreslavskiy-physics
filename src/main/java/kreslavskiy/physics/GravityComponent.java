@@ -13,7 +13,7 @@ public class GravityComponent extends JComponent
     public void setForce(Force force)
     {
         this.force = force;
-        Projectile p = new Projectile(0, 0, force);
+        p = new Projectile(0, 0, force);
         repaint();
     }
 
@@ -50,7 +50,7 @@ public class GravityComponent extends JComponent
 
         double apxX = force.getX() * force.getY() / 9.8;
         double apxY = force.getY() * force.getY() / (-9.8 * 2);
-        g.fillOval((int) apxX, (int) apxY, 10, 10);
+        g.drawOval((int) apxX, (int) apxY, 10, 10);
 
         g.setColor(Color.GREEN);
         g.drawLine(0, 0, (int) force.getX(), (int) -force.getY());

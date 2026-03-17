@@ -6,49 +6,103 @@ import java.awt.event.*;
 
 public class GravityFrame extends JFrame
 {
-    private JTextField xField;
-    private JTextField yField;
-    private JTextField timeField;
-    private JLabel angLabel;
-    private JLabel magLabel;
-    private JLabel timeLabel;
-    private JLabel apexLabel;
-    private double apex;
+    private final JTextField xField;
+    private final JTextField yField;
+    private final JTextField timeField;
+    private final JLabel angLabel;
+    private final JLabel magLabel;
+    private final JLabel timeLabel;
+    private final JLabel apexLabel;
 
 
     public GravityFrame()
     {
-        setSize(300, 400);
+        setSize(800, 600);
         setTitle("Gravity Frames");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new BorderLayout());
+        setLayout(new GridBagLayout());
+
+
+        GridBagConstraints constraints;
 
         JLabel xForce = new JLabel("ForceX:");
-        JPanel northPanel = new JPanel();
-        northPanel.add(xForce);
-        JTextField xField = new JTextField("37.0365");
-        northPanel.add(xField);
-        JLabel yForce = new JLabel("ForceY:");
-        northPanel.add(yForce);
-        JTextField yField = new JTextField("28.9360");
-        northPanel.add(yField);
-        timeLabel = new JLabel("Time:");
-        northPanel.add(timeLabel);
-        JTextField timeField = new JTextField("5");
-        northPanel.add(timeField);
-        JButton button = new JButton("Draw");
-        northPanel.add(button);
-        magLabel = new JLabel();
-        northPanel.add(magLabel);
-        angLabel = new JLabel();
-        northPanel.add(angLabel);
-        apexLabel = new JLabel();
-        northPanel.add(apexLabel);
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        add(xForce, constraints);
 
-        add(northPanel, BorderLayout.NORTH);
+        xField = new JTextField("37.0365");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        add(xField, constraints);
+
+        JLabel yForce = new JLabel("ForceY:");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        add(yForce, constraints);
+
+        yField = new JTextField("28.9360");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        add(yField, constraints);
+
+
+        timeLabel = new JLabel("Time:");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        add(timeLabel, constraints);
+
+
+        timeField = new JTextField("5");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        add(timeField, constraints);
+
+        magLabel = new JLabel("Magnitude: 46.99994072602645");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        add(magLabel, constraints);
+
+        angLabel = new JLabel("Angle: 37.99991824426307");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 2;
+        add(angLabel, constraints);
+
+        apexLabel = new JLabel("Apex: 42.718984489795915");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        constraints.gridwidth = 2;
+        add(apexLabel, constraints);
+
+        JButton button = new JButton("Draw");
+        constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 6;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.NORTH;
+        add(button, constraints);
+
         GravityComponent gravityComponent = new GravityComponent();
-        add(gravityComponent, BorderLayout.CENTER);
+        constraints = new GridBagConstraints();
+        constraints.gridx = 2;
+        constraints.gridy = 0;
+        constraints.gridheight = 7;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.fill = GridBagConstraints.BOTH;
+        add(gravityComponent, constraints);
 
         GravityController gravityController = new GravityController(gravityComponent, xField, yField, timeField,
                 angLabel, magLabel, apexLabel);
@@ -104,6 +158,7 @@ public class GravityFrame extends JFrame
             public void mouseDragged(MouseEvent e)
             {
                 gravityController.updateForce(e.getX(), gravityComponent.getHeight() - e.getY());
+                gravityComponent.repaint();
             }
 
             @Override
